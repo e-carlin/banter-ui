@@ -1,0 +1,12 @@
+exports[`test NotFound renders correctly 1`] = `
+<div
+  className="ErrorSection">
+  <h1
+    className="ErrorHeader">
+    404
+  </h1>
+  <h2>
+    You weren\'t supposed to see this...
+  </h2>
+</div>
+`;
