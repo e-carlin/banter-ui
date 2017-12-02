@@ -1,6 +1,7 @@
 import  React, {Component} from 'react';
 import { PropTypes } from 'prop-types';
 import Script from 'react-load-script'
+import { exchangePublicToken } from '../api';
 
 const DEV_ENV = "sandbox";
 const PROD_ENV = "production";
@@ -45,9 +46,9 @@ class PlaidLink extends Component {
   }
 
   handleSuccess(publicToken, metaData) {
-    this.props.onSuccess(publicToken, metaData);
+    this.props.onSuccess(publicToken, metaData); // TODO: ????
     console.log("**** HANDLE SUCCESS: "+JSON.stringify(metaData))
-
+    exchangePublicToken(JSON.stringify(metaData))
   }
 
   handleExit() {

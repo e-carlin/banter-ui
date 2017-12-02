@@ -25,7 +25,7 @@
         if (r.ok) {
           return r.json();
         }
-        throw new Error('Unauthorized');
+        // throw new Error('Unauthorized');
       })
       .catch((e) => { return console.error(e); });
   };
@@ -58,10 +58,10 @@
 //   };
 
 //TODO: This should require a user_id JWT
-export const fetchAccessToken = (publicToken) => {
+export const exchangePublicToken = (publicToken) => {
     return fetchHelper({
-      url: 'get-accesstoken',
-      body: JSON.stringify({ publicToken: publicToken }),
+      url: 'exchange_plaid_public_token',
+      body: JSON.stringify(publicToken),
       method: 'POST'
     });
   };
