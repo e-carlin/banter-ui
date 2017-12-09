@@ -33,7 +33,7 @@ class Register extends Component {
   };
 
     render() {
-        if(this.props.registration) {
+        if(this.props.registration.length > 0) {
           return <Redirect to='/'/>;
         }
         else if (this.props.hasErrored) {
@@ -90,7 +90,7 @@ class Register extends Component {
 };
 
 Register.propTypes = {
-    registration: PropTypes.bool.isRequired,
+    registration: PropTypes.array.isRequired,
     hasErrored: PropTypes.bool.isRequired,
     isPending: PropTypes.bool.isRequired
 };
