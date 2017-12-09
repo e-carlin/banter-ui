@@ -18,10 +18,10 @@ export function userRegistrationIsPending(state = false, action) {
     }
 }
 
-export function userRegistration(state = [], action) {
+export function userRegistrationSuccess(state = false, action) {
     switch (action.type) {
         case 'USER_REGISTRATION_SUCCESS':
-            return action.registration;
+            return action.success;
 
         default:
             return state;

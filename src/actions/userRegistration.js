@@ -6,6 +6,7 @@
 */
 
 export function userRegistrationHasErrored(bool) {
+    console.log("ERRROR")
     return {
         type: 'USER_REGISTRATION_HAS_ERRORED',
         hasErrored: bool
@@ -19,10 +20,15 @@ export function userRegistrationIsPending(bool) {
     };
 }
 
-export function userRegistrationSuccess(bool) {
+export function userRegistrationSuccess(response) {
+    console.log("*****************")
+    console.log("In registration success")
+    console.log(response)
+    console.log("*****************")
+
     return {
         type: 'USER_REGISTRATION_SUCCESS',
-        registration: bool
+        success: true
     };
 }
 
@@ -40,8 +46,10 @@ export function registerUser() {
 
                 return response;
             })
-            .then((response) => response.json())
-            .then((registration) => dispatch(userRegistrationSuccess(registration)))
-            .catch(() => dispatch(userRegistrationHasErrored(true)));
+            .then((response) => dispatch(userRegistrationSuccess(response)))
+            .catch((e) => {
+                console.log("e is: "+e)
+                dispatch(userRegistrationHasErrored(true))
+            });
     };
 }

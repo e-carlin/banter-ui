@@ -1,8 +1,8 @@
 import { combineReducers } from 'redux';
-import { userRegistration, userRegistrationHasErrored, userRegistrationIsPending } from './registration';
+import { userRegistrationSuccess, userRegistrationHasErrored, userRegistrationIsPending } from './registration';
 
 export default combineReducers({
-    userRegistration,
+    userRegistrationSuccess,
     userRegistrationHasErrored,
     userRegistrationIsPending
 });

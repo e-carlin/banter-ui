@@ -33,7 +33,7 @@ class Register extends Component {
   };
 
     render() {
-        if(this.props.registration.length > 0) {
+        if(this.props.success) {
           return <Redirect to='/'/>;
         }
         else if (this.props.hasErrored) {
@@ -90,14 +90,14 @@ class Register extends Component {
 };
 
 Register.propTypes = {
-    registration: PropTypes.array.isRequired,
+    success: PropTypes.bool.isRequired,
     hasErrored: PropTypes.bool.isRequired,
     isPending: PropTypes.bool.isRequired
 };
 
 const mapStateToProps = (state) => {
     return {
-        registration: state.userRegistration,
+        success: state.userRegistrationSuccess,
         hasErrored: state.userRegistrationHasErrored,
         isPending: state.userRegistrationIsPending
     };
