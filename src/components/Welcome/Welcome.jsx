@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
-import PlaidLink from '../../containers/PlaidLink'
-
+import { Link } from 'react-router-dom';
 
 class Welcome extends Component {
   
@@ -8,10 +7,9 @@ class Welcome extends Component {
     return (
     <div>
       Welcome to the app!
-      {/* Keep the empty div below PlaidLink. It is needed in the render of the  */}
-      <PlaidLink >
-      <div></div>
-      </PlaidLink>
+      <div className="register">
+            Link your bank account <Link to="/link-account">here</Link>
+        </div>
     </div>
     );
   }

@@ -1,7 +1,7 @@
 import  React, {Component} from 'react';
 import { PropTypes } from 'prop-types';
 import Script from 'react-load-script'
-import { exchangePublicToken } from '../api';
+import { exchangePublicToken } from '../../api';
 
 const DEV_ENV = "sandbox";
 const PROD_ENV = "production";

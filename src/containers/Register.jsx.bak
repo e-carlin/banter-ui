@@ -1,0 +1,92 @@
+import React, { Component } from 'react';
+import { Link, Redirect } from 'react-router-dom';
+import PropTypes from 'prop-types';
+import { register } from '../api';
+
+/**
+ * Registration form
+ */
+class Register extends Component {
+  static propTypes = {
+    redirect: PropTypes.bool.isRequired,
+  };
+
+  state = {
+    email: '',
+    password: '',
+    redirect: false
+  };
+
+  handleChange = (e) => {
+    return this.setState({
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  handleSubmit = (e) => {
+    e.preventDefault();
+    // let promise = register(this.state.email, this.state.password);
+    // console.log("************")
+    // console.log(promise)
+    // console.log("************")
+    // promise.then(studentsStatistics => {
+    // this.setState({
+    //   studentsStatistics: studentsStatistics
+    // }, () => {
+    //   console.log(this.state.studentsStatistics);
+    // }
+  // });
+
+    register(this.state.email, this.state.password)
+    .then((res) => {
+        console.log(res);
+        this.setState({redirect: true});
+    });
+    // register(this.state.email, this.state.password).then(function(res){
+    //    console.log("************")
+    //    console.log(res)
+    //    console.log("************")
+    // },
+    //   this.setState({
+    //     redirect: false //TODO: Change to true
+    //   }),
+    // );
+  };
+
+  render() {
+    if(this.state.redirect) {
+      return <Redirect to='/'/>;
+    }
+    else  {
+      return (
+      <div className="login-container">
+        <div className="login-form">
+          <h1>Register Here</h1>
+          <form onSubmit={this.handleSubmit}>
+            <input
+              name="email"
+              onChange={this.handleChange}
+              placeholder="Enter email"
+              type="text"
+              value={this.state.email}
+            />
+            <input
+              name="password"
+              onChange={this.handleChange}
+              placeholder="Enter Password"
+              type="password"
+              value={this.state.password}
+            />
+            <button type="submit">Submit</button>
+          </form>
+          <div className="register">
+            Already a user? Log in <Link to="/login">here</Link>
+          </div>
+        </div>
+      </div>
+    );
+    }
+  }
+}
+
+export default Register;

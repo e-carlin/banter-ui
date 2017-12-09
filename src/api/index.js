@@ -23,6 +23,9 @@
     })
       .then((r) => {
         if (r.ok) {
+          console.log("&&&&&&&&&&&")
+          console.log("R is "+r)
+          console.log("&&&&&&&&&&&&")
           return r.json();
         }
         // throw new Error('Unauthorized');
@@ -45,17 +48,16 @@
 //       });
 //   };
   
-//   export const register = (username, password) => {
-//     return fetchHelper({
-//       url: 'user/register',
-//       body: JSON.stringify({
-//         userName: username,
-//         fullName: username,
-//         secret: password,
-//       }),
-//       method: 'POST',
-//     });
-//   };
+  export const register = (email, password) => {
+    return fetchHelper({
+      url: 'user/register',
+      body: JSON.stringify({
+        email: email,
+        password: password,
+      }),
+      method: 'POST',
+    });
+  };
 
 //TODO: This should require a user_id JWT
 export const exchangePublicToken = (publicToken) => {
