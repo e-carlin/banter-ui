@@ -5,6 +5,8 @@
 * The 4th action return a function through redux-thunk
 */
 
+import { registerUserApi } from "../api"
+
 export function userRegistrationHasErrored(bool) {
     console.log("ERRROR")
     return {
@@ -27,11 +29,13 @@ export function userRegistrationSuccess() {
     };
 }
 
-export function registerUser() {
+export function registerUser(email, password) {
+    console.log("email is "+email)
+    console.log("pass is "+password)
     return (dispatch) => {
         dispatch(userRegistrationIsPending(true));
 
-        fetch('http://599167402df2f40011e4929a.mockapi.io/items' )
+        registerUserApi(email, password)
             .then((response) => {
                 if (!response.ok) {
                     throw Error(response.statusText);

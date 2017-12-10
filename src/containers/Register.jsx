@@ -17,19 +17,9 @@ class Register extends Component {
     });
   };
 
-    // componentDidMount() {
-    //     this.props.registerUser();
-    // };
-
     handleSubmit = (e) => {
     e.preventDefault();
-
-    this.props.registerUser();
-    // register(this.state.email, this.state.password)
-    // .then((res) => {
-    //     console.log(res);
-    //     this.setState({redirect: true});
-    // });
+    this.props.registerUser(this.state.email, this.state.password);
   };
 
     render() {
@@ -72,18 +62,6 @@ class Register extends Component {
                 </div>
               </div>
             );
-        //     return (
-        //     <div>
-        //     GOING TO RENDER:
-        //         <ul>
-        //             {this.props.registration.map((item) => (
-        //                 <li key={item.id}>
-        //                     {item.label}
-        //                 </li>
-        //             ))}
-        //         </ul>
-        //     </div>
-        // );
 
         }
     }
@@ -105,7 +83,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        registerUser: () => dispatch(registerUser())
+        registerUser: (email, password) => dispatch(registerUser(email, password))
     };
 };
 

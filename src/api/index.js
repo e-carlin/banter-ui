@@ -21,16 +21,6 @@
       method,
       body,
     })
-      .then((r) => {
-        if (r.ok) {
-          console.log("&&&&&&&&&&&")
-          console.log("R is "+r)
-          console.log("&&&&&&&&&&&&")
-          return r.json();
-        }
-        // throw new Error('Unauthorized');
-      })
-      .catch((e) => { return console.error(e); });
   };
   
 //   export const login = (username, password) => {
@@ -48,16 +38,16 @@
 //       });
 //   };
   
-  export const register = (email, password) => {
-    return fetchHelper({
-      url: 'user/register',
-      body: JSON.stringify({
-        email: email,
-        password: password,
-      }),
-      method: 'POST',
-    });
-  };
+export const registerUserApi = (email, password) => {
+  return fetchHelper({
+    url: 'user/register',
+    body: JSON.stringify({
+      email: email,
+      password: password,
+    }),
+    method: 'POST',
+  });
+};
 
 //TODO: This should require a user_id JWT
 export const exchangePublicToken = (publicToken) => {
