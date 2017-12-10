@@ -37,7 +37,7 @@ class Register extends Component {
           return <Redirect to='/'/>;
         }
         else if (this.props.hasErrored) {
-            return <p>Sorry! There was an error loading the items</p>;
+            return <p>Sorry! There was an error registering</p>;
         }
 
         else if (this.props.isPending) {
