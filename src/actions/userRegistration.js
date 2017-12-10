@@ -20,7 +20,7 @@ export function userRegistrationIsPending(bool) {
     };
 }
 
-export function userRegistrationSuccess(response) {
+export function userRegistrationSuccess() {
     return {
         type: 'USER_REGISTRATION_SUCCESS',
         success: true
@@ -34,10 +34,6 @@ export function registerUser() {
         fetch('http://599167402df2f40011e4929a.mockapi.io/items' )
             .then((response) => {
                 if (!response.ok) {
-                    console.log("*****************")
-                    console.log("In response.ok")
-                    console.log(response)
-                    console.log("*****************")
                     throw Error(response.statusText);
                 }
 
@@ -45,7 +41,7 @@ export function registerUser() {
 
                 return response;
             })
-            .then((response) => dispatch(userRegistrationSuccess(response)))
+            .then(() => dispatch(userRegistrationSuccess()))
             .catch(() => dispatch(userRegistrationHasErrored(true)));
     };
 }
