@@ -1,4 +1,4 @@
-export function userRegistrationHasErrored(state = false, action) {
+export function userRegistrationHasErrored(state = "", action) {
     switch (action.type) {
         case 'USER_REGISTRATION_HAS_ERRORED':
             return action.hasErrored;

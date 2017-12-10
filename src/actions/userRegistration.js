@@ -7,12 +7,12 @@
 
 import { registerUserApi } from "../api"
 
-export function userRegistrationHasErrored(bool) {
-    console.log("ERRROR")
+export function userRegistrationHasErrored(message) {
+    console.log(message)
     return {
-        type: 'USER_REGISTRATION_HAS_ERRORED',
-        hasErrored: bool
-    };
+        type : 'USER_REGISTRATION_HAS_ERRORED',
+        hasErrored: message
+    }
 }
 
 export function userRegistrationIsPending(bool) {
@@ -22,10 +22,10 @@ export function userRegistrationIsPending(bool) {
     };
 }
 
-export function userRegistrationSuccess() {
+export function userRegistrationSuccess(bool) {
     return {
         type: 'USER_REGISTRATION_SUCCESS',
-        success: true
+        success: bool
     };
 }
 
@@ -37,15 +37,31 @@ export function registerUser(email, password) {
 
         registerUserApi(email, password)
             .then((response) => {
-                if (!response.ok) {
-                    throw Error(response.statusText);
-                }
-
                 dispatch(userRegistrationIsPending(false));
+                if (!response.ok) {
+                    console.log(response)
+                    dispatch(userRegistrationSuccess(false));
+                    if(response.status === 409) {
+                        // 409 means "conflict". The email is already taken. So, the user must login or provide a different email.
+                        response.json().then((res) => {
+                            console.log("Res is "+res)
+                            dispatch(userRegistrationHasErrored(res.message))
+                        })
+                    }
+                    else {
+                        dispatch(userRegistrationHasErrored("Error registering. Please try again."))
+                    }
+                    throw Error(response.statusText)
+                }
 
                 return response;
             })
-            .then(() => dispatch(userRegistrationSuccess()))
-            .catch(() => dispatch(userRegistrationHasErrored(true)));
+            .then((response) => response.json())
+            // .then((response) => {
+            //     dispatch(userRegistrationHasErrored(response));
+            //     throw Error()
+            // })
+            .then(() => dispatch(userRegistrationSuccess(true)))
+            .catch((e) => console.log("Error registaring user: "+e));
     };
 }

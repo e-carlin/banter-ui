@@ -26,9 +26,6 @@ class Register extends Component {
         if(this.props.success) {
           return <Redirect to='/'/>;
         }
-        else if (this.props.hasErrored) {
-            return <p>Sorry! There was an error registering</p>;
-        }
 
         else if (this.props.isPending) {
             return <p>Loading…</p>;
@@ -37,6 +34,7 @@ class Register extends Component {
         else {
             return (
               <div className="login-container">
+              <div>{this.props.hasErrored}</div>
                 <div className="login-form">
                   <h1>Register Here</h1>
                   <form onSubmit={this.handleSubmit}>
@@ -69,7 +67,7 @@ class Register extends Component {
 
 Register.propTypes = {
     success: PropTypes.bool.isRequired,
-    hasErrored: PropTypes.bool.isRequired,
+    hasErrored: PropTypes.string.isRequired,
     isPending: PropTypes.bool.isRequired
 };
 
