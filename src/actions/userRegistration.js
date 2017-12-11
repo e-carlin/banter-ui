@@ -8,7 +8,6 @@
 import { registerUserApi } from "../api"
 
 export function userRegistrationHasErrored(message) {
-    console.log(message)
     return {
         type : 'USER_REGISTRATION_HAS_ERRORED',
         hasErrored: message
@@ -39,12 +38,10 @@ export function registerUser(email, password) {
             .then((response) => {
                 dispatch(userRegistrationIsPending(false));
                 if (!response.ok) {
-                    console.log(response)
                     dispatch(userRegistrationSuccess(false));
                     if(response.status === 409) {
                         // 409 means "conflict". The email is already taken. So, the user must login or provide a different email.
                         response.json().then((res) => {
-                            console.log("Res is "+res)
                             dispatch(userRegistrationHasErrored(res.message))
                         })
                     }
