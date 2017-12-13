@@ -54,10 +54,6 @@ export function registerUser(email, password) {
                 return response;
             })
             .then((response) => response.json())
-            // .then((response) => {
-            //     dispatch(userRegistrationHasErrored(response));
-            //     throw Error()
-            // })
             .then(() => dispatch(userRegistrationSuccess(true)))
             .catch((e) => console.log("Error registaring user: "+e));
     };
