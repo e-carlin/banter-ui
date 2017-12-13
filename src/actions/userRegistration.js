@@ -39,15 +39,15 @@ export function registerUser(email, password) {
                 dispatch(userRegistrationIsPending(false));
                 if (!response.ok) {
                     dispatch(userRegistrationSuccess(false));
-                    if(response.status === 409) {
-                        // 409 means "conflict". The email is already taken. So, the user must login or provide a different email.
+                     if(response.status === 400 || response.status === 409){ //400 code is an error likely means there is an internal status code that should be proccessed
                         response.json().then((res) => {
                             dispatch(userRegistrationHasErrored(res.message))
                         })
                     }
                     else {
-                        dispatch(userRegistrationHasErrored("Error registering. Please try again."))
+                        dispatch(userRegistrationHasErrored("Sorry, there was an internal error. Please try again."));
                     }
+                    //Throw this error so the catch is triggered and no further processing of the response is done
                     throw Error(response.statusText)
                 }
 

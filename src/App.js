@@ -9,6 +9,7 @@ import NotFound from './components/NotFound';
 import Welcome from './components/Welcome';
 import PlaidLink from './containers/PlaidLink';
 import Register from './containers/Register';
+import Login from './containers/Login'
 
 const store = configureStore();
 
@@ -19,6 +20,7 @@ const App = () => { // eslint-disable-line
             <div className="App">
               <Switch>
                 <Route exact path="/" component={Welcome} />
+                <Route exact path="/user/login" component={Login} />
                 <PrivateRoute  exact path="/link-account" component={PlaidLink } />
                 <Route path="/register" component={ Register }/>
                 <Route component={NotFound} />

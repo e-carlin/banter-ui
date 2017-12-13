@@ -37,6 +37,17 @@
 //         return saveUserToLocalStorage(user);
 //       });
 //   };
+
+export const loginUserApi = (email, password) => {
+  return fetchHelper({
+    url: "user/login",
+    body: JSON.stringify({
+      email: email,
+      password: password
+    }),
+    method: 'POST'
+  });
+};
   
 export const registerUserApi = (email, password) => {
   return fetchHelper({

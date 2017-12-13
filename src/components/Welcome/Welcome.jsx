@@ -7,8 +7,8 @@ class Welcome extends Component {
     return (
     <div>
       Welcome to the app!
-      <div className="register">
-            Link your bank account <Link to="/link-account">here</Link>
+      <div className="login">
+            Please login here <Link to="/user/login">here</Link>
         </div>
     </div>
     );
